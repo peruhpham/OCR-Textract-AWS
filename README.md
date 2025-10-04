@@ -4,7 +4,7 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
 
 -----
 
-## Tính năng Chính
+## 1. Tính năng Chính
 
   * **Upload Đơn giản:** Cho phép người dùng tải lên các tệp **Hình ảnh (`.jpg`, `.png`,...)** hoặc **PDF**.
   * **Xử lý Không Đồng bộ:** Backend sử dụng cơ chế **Job ID** và **Polling** để xử lý các tác vụ OCR nặng mà không làm chặn giao diện người dùng.
@@ -13,7 +13,7 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
 
 -----
 
-## Công nghệ Sử dụng
+## 2. Công nghệ Sử dụng
 
 | Phần | Công nghệ | Mục đích |
 | :--- | :--- | :--- |
@@ -24,19 +24,19 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
 
 -----
 
-## Hướng dẫn Cài đặt & Khởi chạy
+## 3. Hướng dẫn Cài đặt & Khởi chạy
 
 Để khởi chạy và phát triển dự án này, bạn cần thiết lập cả môi trường Frontend và Backend.
 
-### 1\. Thiết lập Backend (Python/FastAPI)
+### 3.1\. Thiết lập Backend (Python/FastAPI)
 
-1.  **Di chuyển vào thư mục Backend:**
+3.1.1.  **Di chuyển vào thư mục Backend:**
 
     ```bash
     cd backend
     ```
 
-2.  **Tạo và Kích hoạt Môi trường Ảo:**
+3.1.2.  **Tạo và Kích hoạt Môi trường Ảo:**
 
     ```bash
     # Tạo môi trường ảo
@@ -49,14 +49,14 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
     # source env/bin/activate 
     ```
 
-3.  **Cài đặt các Dependencies:**
+3.1.3.  **Cài đặt các Dependencies:**
 
     ```bash
     (env) $ pip install -r requirements.txt
     # (Nếu chưa có, bạn cần tạo file này bằng lệnh 'pip freeze > requirements.txt')
     ```
 
-4.  **Khởi động Server Backend:**
+3.1.4.  **Khởi động Server Backend:**
     Đảm bảo bạn đang ở thư mục **`backend`** và sử dụng `uvicorn` để chạy ứng dụng.
 
     ```bash
@@ -65,15 +65,15 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
 
     Server sẽ chạy tại `http://127.0.0.1:8000`.
 
-### 2\. Thiết lập Frontend (React)
+### 3.2\. Thiết lập Frontend (React)
 
-1.  **Mở cửa sổ Terminal/Shell mới** và di chuyển vào thư mục Frontend:
+3.2.1.  **Mở cửa sổ Terminal/Shell mới** và di chuyển vào thư mục Frontend:
 
     ```bash
     cd ../frontend # (Điều chỉnh đường dẫn nếu cần)
     ```
 
-2.  **Cài đặt các Dependencies:**
+3.2.2.  **Cài đặt các Dependencies:**
 
     ```bash
     npm install
@@ -81,7 +81,7 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
     yarn install
     ```
 
-3.  **Khởi động Ứng dụng React:**
+3.2.3.  **Khởi động Ứng dụng React:**
 
     ```bash
     npm run dev
@@ -93,7 +93,7 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
 
 -----
 
-## Cấu trúc Thư mục Chính
+## 4. Cấu trúc Thư mục Chính
 
 ```
 .
@@ -146,7 +146,7 @@ ORC-Textract-project/
 
 -----
 
-## API Endpoints
+## 5. API Endpoints
 
 Ứng dụng Frontend giao tiếp với các endpoints sau của Backend:
 
@@ -160,16 +160,16 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 
 ----
 
-## Mục lập kế hoạch Quản lý dự án trên Jira
+## 6. Mục lập kế hoạch Quản lý dự án trên Jira
 - ...
 - ...
 
 -----
 
 
-## 🧪 Bài LAP 03 – Nhóm 18
+## 7. Bài LAP 03 – Nhóm 18
 
-### 🎯 Mục tiêu bài Lab
+### 7.1. Mục tiêu bài Lab
 [Qui trình bài Lap](public/quitrinh.png)
 - Ứng dụng phải là **Fullstack** gồm:
   - Frontend
@@ -197,7 +197,7 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 
 ---
 
-### 📋 Yêu cầu báo cáo
+### 7.2. Yêu cầu báo cáo
 
 - Mô tả kiến trúc hệ thống:
   - Sơ đồ CI/CD pipeline
