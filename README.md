@@ -166,6 +166,53 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 
 -----
 
-## Bài LAP 03 - Nhóm 18
+
+## 🧪 Bài LAP 03 – Nhóm 18
+
+### 🎯 Mục tiêu bài Lab
+[Qui trình bài Lap](public/quitrinh.png)
+- Ứng dụng phải là **Fullstack** gồm:
+  - Frontend
+  - Backend
+  - Database
+
+- **Triển khai DevOps CI/CD trên AWS**:
+  - Thiết lập pipeline CI/CD bằng GitHub Actions / GitLab CI / Jenkins / AWS CodePipeline
+  - Mỗi lần push code → pipeline tự động build, test và deploy
+
+- **Sử dụng Docker / Containerization**:
+  - Backend được đóng gói bằng Docker
+  - Deploy lên AWS ECS / EKS / EC2
+
+- **Database**:
+  - Ít nhất một nhóm sử dụng AWS RDS (MySQL/Postgres)
+  - Nhóm khác có thể dùng MongoDB Atlas hoặc AWS DynamoDB
+
+- **Frontend**:
+  - Sử dụng ReactJS / Angular / Vue
+  - Deploy lên AWS S3 + CloudFront
+
+- **Tích hợp giám sát hệ thống**:
+  - Dùng AWS CloudWatch hoặc công cụ log monitoring khác
+
+---
+
+### 📋 Yêu cầu báo cáo
+
+- Mô tả kiến trúc hệ thống:
+  - Sơ đồ CI/CD pipeline
+  - Kiến trúc triển khai trên AWS
+
+- Báo cáo tiến độ và công việc:
+  - Trên GitHub, Jira (WBS)
+
+- Cung cấp file cấu hình:
+  - YAML / Jenkinsfile / Terraform
+
+- Demo hệ thống chạy thật:
+  - Trên môi trường AWS
+
+---
+
 
 -----
