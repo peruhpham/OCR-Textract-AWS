@@ -36,34 +36,46 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
     cd backend
     ```
 
-3.1.2.  **Tạo và Kích hoạt Môi trường Ảo:**
+### ⚙️ 3.1.2. Tạo và Kích hoạt Môi trường Ảo với `uv`
 
-    ```bash
-    # Tạo môi trường ảo
-    python -m venv env 
+```bash
+# Tạo môi trường ảo
+uv venv env
 
-    # Kích hoạt (trên MINGW64/Git Bash - Windows)
-    source env/Scripts/activate 
+# Kích hoạt môi trường (trên MINGW64/Git Bash - Windows)
+source env/Scripts/activate
 
-    # Hoặc trên macOS/Linux
-    # source env/bin/activate 
-    ```
+# Hoặc trên macOS/Linux
+source env/bin/activate
+```
 
-3.1.3.  **Cài đặt các Dependencies:**
+---
 
-    ```bash
-    (env) $ pip install -r requirements.txt
-    # (Nếu chưa có, bạn cần tạo file này bằng lệnh 'pip freeze > requirements.txt')
-    ```
+### 📦 3.1.3. Cài đặt Dependencies với `uv`
 
-3.1.4.  **Khởi động Server Backend:**
-    Đảm bảo bạn đang ở thư mục **`backend`** và sử dụng `uvicorn` để chạy ứng dụng.
+```bash
+# Cài đặt từ file pyproject.toml
+uv pip install -e . 
 
-    ```bash
-    (env) $ uvicorn app.main:app --reload
-    ```
+# Hoặc nếu dùng requirements.txt
+uv pip install -r requirements.txt
+```
 
-    Server sẽ chạy tại `http://127.0.0.1:8000`.
+> 💡 *Lưu ý:* `uv` là công cụ thay thế `pip` giúp cài đặt nhanh hơn, bảo mật hơn và tương thích tốt với môi trường ảo.
+
+---
+
+### 🖥️ 3.1.4. Khởi động Server Backend với `uvicorn`
+
+Đảm bảo bạn đang ở thư mục **`backend`** và chạy:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+Server sẽ chạy tại địa chỉ:  
+👉 `http://127.0.0.1:8000`
+
 
 ### 3.2\. Thiết lập Frontend (React)
 
@@ -170,7 +182,7 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 ## 7. Bài LAP 03 – Nhóm 18
 
 ### 7.1. Mục tiêu bài Lab
-[Qui trình bài Lap](public/quitrinh.png)
+[Qui trình bài Lap](./public/quitrinh.png)
 - Ứng dụng phải là **Fullstack** gồm:
   - Frontend
   - Backend
@@ -194,8 +206,6 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 
 - **Tích hợp giám sát hệ thống**:
   - Dùng AWS CloudWatch hoặc công cụ log monitoring khác
-
----
 
 ### 7.2. Yêu cầu báo cáo
 
