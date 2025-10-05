@@ -182,7 +182,7 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 ## 7. Bài LAP 03 – Nhóm 18
 
 ### 7.1. Mục tiêu bài Lab
-[Qui trình bài Lap](./public/quitrinh.png)
+[Qui trình bài Lap](frontend/public/quitrinh.png)
 - Ứng dụng phải là **Fullstack** gồm:
   - Frontend
   - Backend
