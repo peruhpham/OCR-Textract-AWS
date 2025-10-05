@@ -175,12 +175,19 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 ## 6. Mục lập kế hoạch Quản lý dự án trên Jira
 - Timeline plan tiến độ hoàn thành Sprint 1 (5/10/2025)
   - Link project trên Jira:
-  [Timeline thiết kế trên Jira](https://student-team-vnphuphm.atlassian.net/jira/software/projects/L0BTLFD/boards/265/timeline)
+    [Timeline thiết kế trên Jira](https://student-team-vnphuphm.atlassian.net/jira/software/projects/L0BTLFD/boards/265/timeline)
   ![Tineline image](frontend/public/timeline.png)
-  - Tổng quan Summary ngày 5/10/2025
+  
+  - Tổng quan Summary ngày 5/10/2025: 
+    [Summary Project in Jira](https://student-team-vnphuphm.atlassian.net/jira/software/projects/L0BTLFD/summary)
   ![Summary 5/10/2025](frontend/public/summary-10-5-25.png)
 
+  - Exel report 5/10:
+    ![Exel report 5/10/2025](frontend/public/exel-report.png)
+  - ...
+
 - Timeline plan tiến độ hoàn thành Sprint 2 (11/10/2025)
+  - ...
   - ...
   - ...
 
