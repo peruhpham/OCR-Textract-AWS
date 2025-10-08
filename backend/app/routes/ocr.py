@@ -1,4 +1,3 @@
-# app/routes/ocr.py
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from uuid import uuid4
 import asyncio

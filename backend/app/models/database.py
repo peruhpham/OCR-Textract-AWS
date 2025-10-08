@@ -1,6 +1,5 @@
 #kết nối MongoDB bằng motor
 
-# app/models/database.py
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 

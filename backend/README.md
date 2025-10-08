@@ -3,4 +3,5 @@
 
 ----
 # Run api with python
+- source .venv/Scripts/activate
 - uvicorn app.main:app --reload

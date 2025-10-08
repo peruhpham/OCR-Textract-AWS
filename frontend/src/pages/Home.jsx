@@ -1,18 +1,19 @@
-// src/pages/Home.jsx
 import React, { useState } from "react";
 import OcrUpload from "../components/OcrUpload";
 import OcrResult from "../components/OcrResult";
+// import PdfReader from "./components/PdfReader";
+// import PdfViewer from "../components/PdfViewer";
 
 export default function Home() {
   const [ocrResult, setOcrResult] = useState(null);
 
   return (
-    <div className="max-w-3xl mx-auto py-10">
-      <h1 className="text-3xl font-bold text-center mb-10">
-        OCR Textract App
+    <div className="max-w-5xl mx-auto py-10">
+      <h1 className="text-5xl font-bold text-center mb-10 text-blue-600">
+        OCR TEXTRACT APP
       </h1>
       <OcrUpload onResult={setOcrResult} />
-      
+      {/* <PdfReader /> */}
       <OcrResult result={ocrResult} />
     </div>
   );
@@ -21,22 +22,3 @@ export default function Home() {
 
 
 
-// // File: src/pages/Home.jsx
-// import React, { useState } from "react";
-// import OcrUpload from "../components/OcrUpload";
-// import OcrResult from "../components/OcrResult";
-
-// export default function Home() {
-//   const [result, setResult] = useState(null);
-
-//   return (
-//     <div className="max-w-3xl mx-auto py-10">
-//       <h1 className="text-3xl font-bold text-center mb-8">OCR Textract App</h1>
-//       <OcrUpload onResult={setResult} />
-//       <OcrResult result={result} />
-//     </div>
-//   );
-// }
-// // Compare this snippet from frontend/src/components/OcrUpload.jsx:
-// // // File: src/components/OcrUpload.jsx
-// // import React, { useState } from "react";
