@@ -282,6 +282,4 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
   - Trên môi trường AWS
 
 ---
-
-
 -----
