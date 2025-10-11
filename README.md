@@ -3,109 +3,24 @@
 Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép người dùng **tải lên** các tệp hình ảnh hoặc PDF, thực hiện **Nhận dạng Ký tự Quang học (OCR)** bằng một dịch vụ backend không đồng bộ, và hiển thị kết quả văn bản trích xuất trực tiếp trên giao diện.
 
 -----
-
-## 1. Tính năng Chính
-
-  * **Upload Đơn giản:** Cho phép người dùng tải lên các tệp **Hình ảnh (`.jpg`, `.png`,...)** hoặc **PDF**.
-  * **Xử lý Không Đồng bộ:** Backend sử dụng cơ chế **Job ID** và **Polling** để xử lý các tác vụ OCR nặng mà không làm chặn giao diện người dùng.
-  * **FastAPI Backend:** Xây dựng API nhanh, mạnh mẽ và có tài liệu hóa tốt.
-  * **React Frontend:** Giao diện người dùng hiện đại, dễ sử dụng, cho phép theo dõi trạng thái xử lý.
+## 🧩 I. MỤC TIÊU
+- Ứng dụng web cho phép người dùng upload ảnh → FastAPI gửi ảnh đến AWS Textract → trả về text nhận diện → lưu vào MongoDB Atlas → hiển thị lại trên React.
 
 -----
+## 🏗️ II. KIẾN TRÚC HỆ THỐNG
+[ReactJS Client - S3 + CloudFront]
+          │
+          ▼
+[FastAPI Backend - ECS Docker Container]
+          │
+          ├──> AWS Textract (OCR)
+          └──> MongoDB Atlas (Lưu text + metadata)
+          
+CI/CD: GitHub Actions → Build & Push Docker → Deploy ECS
 
-## 2. Công nghệ Sử dụng
-
-| Phần | Công nghệ | Mục đích |
-| :--- | :--- | :--- |
-| **Frontend** | React, Tailwind CSS | Xây dựng giao diện người dùng (UI) và quản lý trạng thái tải lên/kết quả. |
-| **Backend** | Python, **FastAPI**, Uvicorn | Xây dựng RESTful API, quản lý các tác vụ OCR không đồng bộ. |
-| **Quản lý gói** | npm / yarn (Frontend), Pip (Backend) | Quản lý các thư viện và dependencies. |
-| **OCR Service** | *Giả định* một dịch vụ OCR bên ngoài (Amazon Textract). | Thực hiện nhận diện văn bản. |
 
 -----
-
-## 3. Hướng dẫn Cài đặt & Khởi chạy
-
-Để khởi chạy và phát triển dự án này, bạn cần thiết lập cả môi trường Frontend và Backend.
-
-### 3.1\. Thiết lập Backend (Python/FastAPI)
-
-3.1.1.  **Di chuyển vào thư mục Backend:**
-
-    ```bash
-    cd backend
-    ```
-
-### ⚙️ 3.1.2. Tạo và Kích hoạt Môi trường Ảo với `uv`
-
-```bash
-# Tạo môi trường ảo
-uv venv env
-
-# Kích hoạt môi trường (trên MINGW64/Git Bash - Windows)
-source env/Scripts/activate
-
-# Hoặc trên macOS/Linux
-source env/bin/activate
-```
-
----
-
-### 📦 3.1.3. Cài đặt Dependencies với `uv`
-
-```bash
-# Cài đặt từ file pyproject.toml
-uv pip install -e . 
-
-# Hoặc nếu dùng requirements.txt
-uv pip install -r requirements.txt
-```
-
-> 💡 *Lưu ý:* `uv` là công cụ thay thế `pip` giúp cài đặt nhanh hơn, bảo mật hơn và tương thích tốt với môi trường ảo.
-
----
-
-### 🖥️ 3.1.4. Khởi động Server Backend với `uvicorn`
-
-Đảm bảo bạn đang ở thư mục **`backend`** và chạy:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-Server sẽ chạy tại địa chỉ:  
-👉 `http://127.0.0.1:8000`
-
-
-### 3.2\. Thiết lập Frontend (React)
-
-3.2.1.  **Mở cửa sổ Terminal/Shell mới** và di chuyển vào thư mục Frontend:
-
-    ```bash
-    cd ../frontend # (Điều chỉnh đường dẫn nếu cần)
-    ```
-
-3.2.2.  **Cài đặt các Dependencies:**
-
-    ```bash
-    npm install
-    # hoặc
-    yarn install
-    ```
-
-3.2.3.  **Khởi động Ứng dụng React:**
-
-    ```bash
-    npm run dev
-    # hoặc
-    yarn dev
-    ```
-
-    Ứng dụng frontend thường sẽ chạy tại `http://localhost:5173` (hoặc cổng khác, hãy kiểm tra output của lệnh).
-
------
-
-## 4. Cấu trúc Thư mục Chính
+## ⚙️ III. CẤU TRÚC DỰ ÁN
 
 ```
 .
@@ -154,11 +69,113 @@ ORC-Textract-project/
 │
 ├── README.md                         # hướng dẫn cài đặt & chạy
 └── .gitignore
+└── .github/workflows/deploy.yml  # CI/CD pipeline
 ```
 
 -----
+## IV. TÍNH NĂNG VÀ CÔNG NGHỆ
+### 4.1. Tính năng 
 
-## 5. API Endpoints
+  * **Upload Đơn giản:** Cho phép người dùng tải lên các tệp **Hình ảnh (`.jpg`, `.png`,...)** hoặc **PDF**.
+  * **Xử lý Không Đồng bộ:** Backend sử dụng cơ chế **Job ID** và **Polling** để xử lý các tác vụ OCR nặng mà không làm chặn giao diện người dùng.
+  * **FastAPI Backend:** Xây dựng API nhanh, mạnh mẽ và có tài liệu hóa tốt.
+  * **React Frontend:** Giao diện người dùng hiện đại, dễ sử dụng, cho phép theo dõi trạng thái xử lý.
+
+### 4.2. Công nghệ Sử dụng
+
+| Phần | Công nghệ | Mục đích |
+| :--- | :--- | :--- |
+| **Frontend** | React, Tailwind CSS | Xây dựng giao diện người dùng (UI) và quản lý trạng thái tải lên/kết quả. |
+| **Backend** | Python, **FastAPI**, Uvicorn | Xây dựng RESTful API, quản lý các tác vụ OCR không đồng bộ. |
+| **Quản lý gói** | npm / yarn (Frontend), Pip (Backend) | Quản lý các thư viện và dependencies. |
+| **OCR Service** | *Giả định* một dịch vụ OCR bên ngoài (Amazon Textract). | Thực hiện nhận diện văn bản. |
+
+
+-----
+## V. HƯỚNG DẪN CÀI ĐẶT & KHỞI CHẠY 
+
+Để khởi chạy và phát triển dự án này, bạn cần thiết lập cả môi trường Frontend và Backend.
+
+### 5.1\. Thiết lập Backend (Python/FastAPI)
+
+5.1.1.  **Di chuyển vào thư mục Backend:**
+
+    ```bash
+    cd backend
+    ```
+
+### ⚙️ 5.1.2. Tạo và Kích hoạt Môi trường Ảo với `uv`
+
+```bash
+# Tạo môi trường ảo
+uv venv env
+
+# Kích hoạt môi trường (trên MINGW64/Git Bash - Windows)
+source env/Scripts/activate
+
+# Hoặc trên macOS/Linux
+source env/bin/activate
+```
+
+---
+
+### 📦 5.1.3. Cài đặt Dependencies với `uv`
+
+```bash
+# Cài đặt từ file pyproject.toml
+uv pip install -e . 
+
+# Hoặc nếu dùng requirements.txt
+uv pip install -r requirements.txt
+```
+
+> 💡 *Lưu ý:* `uv` là công cụ thay thế `pip` giúp cài đặt nhanh hơn, bảo mật hơn và tương thích tốt với môi trường ảo.
+
+---
+
+### 🖥️ 5.1.4. Khởi động Server Backend với `uvicorn`
+
+Đảm bảo bạn đang ở thư mục **`backend`** và chạy:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+Server sẽ chạy tại địa chỉ:  
+👉 `http://127.0.0.1:8000`
+
+
+### 5.2\. Thiết lập Frontend (React)
+
+5.2.1.  **Mở cửa sổ Terminal/Shell mới** và di chuyển vào thư mục Frontend:
+
+    ```bash
+    cd ../frontend # (Điều chỉnh đường dẫn nếu cần)
+    ```
+
+5.2.2.  **Cài đặt các Dependencies:**
+
+    ```bash
+    npm install
+    # hoặc
+    yarn install
+    ```
+
+5.2.3.  **Khởi động Ứng dụng React:**
+
+    ```bash
+    npm run dev
+    # hoặc
+    yarn dev
+    ```
+
+    Ứng dụng frontend thường sẽ chạy tại `http://localhost:5173` (hoặc cổng khác, hãy kiểm tra output của lệnh).
+
+-----
+
+
+-----
+## VI. API ENDPOINTS
 
 Ứng dụng Frontend giao tiếp với các endpoints sau của Backend:
 
@@ -170,9 +187,9 @@ ORC-Textract-project/
 
 Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend đã chạy).
 
-----
 
-## 6. Mục lập kế hoạch Quản lý dự án trên Jira
+-----
+## VII. LẬP KẾ HOẠCH VÀ QUẢN LÝ DỰ ÁN TRÊN JIRA 
 - Timeline plan tiến độ hoàn thành Sprint 1 (5/10/2025)
   - Link project trên Jira:
     [Timeline thiết kế trên Jira](https://student-team-vnphuphm.atlassian.net/jira/software/projects/L0BTLFD/boards/265/timeline)
@@ -192,11 +209,34 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
   - ...
 
 -----
+## ☁️ VIII. TRIỂN KHAI LÊN AWS
+| Thành phần | Dịch vụ AWS         | Ghi chú                |
+| ---------- | ------------------- | ---------------------- |
+| Frontend   | S3 + CloudFront     | Host web tĩnh          |
+| Backend    | ECS (Fargate) + ECR | Chạy container FastAPI |
+| Database   | MongoDB Atlas       | Không cần RDS          |
+| AI OCR     | AWS Textract        | Nhận diện text         |
+| CI/CD      | GitHub Actions      | Tự động deploy         |
+| Logs       | CloudWatch          | Theo dõi container log |
 
 
-## 7. Bài LAP 03 – Nhóm 18
+-----
+## 📊 IX. SƠ ĐỒ HỆ THỐNG (TỔNG QUAN)
+Developer push code → GitHub Actions
+       │
+       ├── Build backend Docker → Push ECR → Deploy ECS
+       ├── Build frontend React → Sync S3 → CloudFront
+       │
+       ▼
+User → CloudFront (React) → FastAPI (ECS)
+                         ├──> AWS Textract
+                         └──> MongoDB Atlas
 
-### 7.1. Mục tiêu bài Lab
+
+-----
+## X. BÀI LAP 03 - NHÓM 18 
+
+### 10.1. Mục tiêu bài Lab
 ![Qui trình bài Lap](frontend/public/quitrinh.png)
 - Ứng dụng phải là **Fullstack** gồm:
   - Frontend
@@ -222,7 +262,7 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 - **Tích hợp giám sát hệ thống**:
   - Dùng AWS CloudWatch hoặc công cụ log monitoring khác
 
-### 7.2. Yêu cầu báo cáo
+### 10.2. Yêu cầu báo cáo
 
 - Mô tả kiến trúc hệ thống:
   - Sơ đồ CI/CD pipeline

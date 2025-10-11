@@ -1,0 +1,42 @@
+name: CI/CD for OCR App (FastAPI + React)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    # ====== BACKEND ======
+    - name: Build Docker image for FastAPI
+      run: |
+        docker build -t ocr-fastapi-backend ./backend
+
+    - name: Push Docker image to ECR
+      env:
+        AWS_REGION: ap-southeast-1
+        ECR_REPOSITORY: ocr-fastapi
+      run: |
+        aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.$AWS_REGION.amazonaws.com
+        docker tag ocr-fastapi-backend:latest <aws_account_id>.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+        docker push <aws_account_id>.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+
+    - name: Deploy new ECS task
+      run: |
+        aws ecs update-service --cluster ocr-cluster --service ocr-fastapi-service --force-new-deployment
+
+    # ====== FRONTEND ======
+    - name: Build React frontend
+      run: |
+        cd frontend
+        npm install
+        npm run build
+
+    - name: Deploy frontend to S3
+      run: |
+        aws s3 sync frontend/build/ s3://ocr-frontend-bucket --delete
