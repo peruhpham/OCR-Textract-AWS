@@ -8,16 +8,18 @@ Dự án này là một ứng dụng web đầy đủ (Full-stack) cho phép ng�
 
 -----
 ## 🏗️ II. KIẾN TRÚC HỆ THỐNG
-[ReactJS Client - S3 + CloudFront]
-          │
-          ▼
-[FastAPI Backend - ECS Docker Container]
-          │
-          ├──> AWS Textract (OCR)
-          └──> MongoDB Atlas (Lưu text + metadata)
-          
-CI/CD: GitHub Actions → Build & Push Docker → Deploy ECS
 
+```
+  [ReactJS Client - S3 + CloudFront]
+            │
+            ▼
+  [FastAPI Backend - ECS Docker Container]
+            │
+            ├──> AWS Textract (OCR)
+            └──> MongoDB Atlas (Lưu text + metadata)
+          
+  CI/CD: GitHub Actions → Build & Push Docker → Deploy ECS
+```
 
 -----
 ## ⚙️ III. CẤU TRÚC DỰ ÁN
@@ -222,16 +224,18 @@ Xem tài liệu chi tiết tại: `http://127.0.0.1:8000/docs` (sau khi backend 
 
 -----
 ## 📊 IX. SƠ ĐỒ HỆ THỐNG (TỔNG QUAN)
-Developer push code → GitHub Actions
-       │
-       ├── Build backend Docker → Push ECR → Deploy ECS
-       ├── Build frontend React → Sync S3 → CloudFront
-       │
-       ▼
-User → CloudFront (React) → FastAPI (ECS)
-                         ├──> AWS Textract
-                         └──> MongoDB Atlas
 
+```
+  Developer push code → GitHub Actions
+        │
+        ├── Build backend Docker → Push ECR → Deploy ECS
+        ├── Build frontend React → Sync S3 → CloudFront
+        │
+        ▼
+  User → CloudFront (React) → FastAPI (ECS)
+                          ├──> AWS Textract
+                          └──> MongoDB Atlas
+```
 
 -----
 ## X. BÀI LAP 03 - NHÓM 18 
